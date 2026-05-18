@@ -78,7 +78,7 @@ jobs:
         DEST: ${{ inputs.dest }}
         DEST_VM_HOST: ${{ steps.resolve.outputs.host }}
     - name: Deploy with Kamal
-      run: kamal deploy -d ${{ inputs.dest }}
+      run: "cp config/deploy.${{ inputs.dest }}.yml config/deploy.yml && cp .kamal/secrets.${{ inputs.dest }} .kamal/secrets && kamal deploy"
       env:
         DEST_VM_HOST: ${{ steps.resolve.outputs.host }}
     - name: Report deployed URL
