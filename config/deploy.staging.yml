@@ -17,6 +17,8 @@ registry:
   username: vmkit-deploy[bot]
   password:
   - KAMAL_REGISTRY_PASSWORD
+ssh:
+  user: kamal
 builder:
   arch: arm64
 env:
