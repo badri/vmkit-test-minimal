@@ -65,7 +65,7 @@ jobs:
 
         ssh-keygen -R "$HOST" 2>/dev/null || true
 
-        ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts'
+        ssh-keyscan "$HOST" >> ~/.ssh/known_hosts'
     - name: Render Kamal secrets
       run: envsubst < .kamal/secrets.${DEST}.tpl > .kamal/secrets.${DEST}
       env:
