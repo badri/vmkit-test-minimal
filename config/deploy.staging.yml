@@ -1,0 +1,25 @@
+service: vmkit-test-minimal-staging
+image: badri/vmkit-test-minimal
+servers:
+  web:
+    hosts:
+    - $DEST_VM_HOST
+proxy:
+  ssl: true
+  host: vmkit-test-minimal-staging.vmkit.app
+  app_port: 8000
+  healthcheck:
+    path: /health
+    interval: 3
+    timeout: 30
+registry:
+  server: ghcr.io
+  username: vmkit-deploy[bot]
+  password:
+  - KAMAL_REGISTRY_PASSWORD
+builder:
+  arch: arm64
+env:
+  clear:
+    PYTHONUNBUFFERED: '1'
+  secret: []
