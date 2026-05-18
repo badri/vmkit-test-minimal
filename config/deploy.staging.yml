@@ -5,7 +5,7 @@ servers:
     hosts:
     - $DEST_VM_HOST
 proxy:
-  ssl: true
+  ssl: false
   host: vmkit-test-minimal-staging.vmkit.app
   app_port: 8000
   healthcheck:
