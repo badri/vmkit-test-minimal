@@ -1,0 +1,8 @@
+[project]
+name = "vmkit-test-minimal"
+version = "0.1.0"
+description = "VMKit test fixture: minimal HTTP server, Dockerfile, no accessories"
+requires-python = ">=3.12"
+# Intentionally no dependencies — proves the scanner reports
+# accessories_needed=[] when nothing in the deps list pattern-matches.
+dependencies = []
