@@ -78,8 +78,9 @@ jobs:
         DEST: ${{ inputs.dest }}
         DEST_VM_HOST: ${{ steps.resolve.outputs.host }}
     - name: Deploy with Kamal
-      run: "cp config/deploy.${{ inputs.dest }}.yml config/deploy.yml && cp .kamal/secrets.${{ inputs.dest }} .kamal/secrets && kamal deploy"
+      run: cp config/deploy.${DEST}.yml config/deploy.yml && cp .kamal/secrets.${DEST} .kamal/secrets && kamal deploy
       env:
+        DEST: ${{ inputs.dest }}
         DEST_VM_HOST: ${{ steps.resolve.outputs.host }}
     - name: Report deployed URL
       if: always()

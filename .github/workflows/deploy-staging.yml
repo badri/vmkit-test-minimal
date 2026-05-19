@@ -31,7 +31,7 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
     - name: Install Kamal
-      run: gem install kamal
+      run: sudo gem install kamal
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.9.0
       with:
@@ -44,7 +44,7 @@ jobs:
 
         ssh-keygen -R "$HOST" 2>/dev/null || true
 
-        ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts'
+        ssh-keyscan "$HOST" >> ~/.ssh/known_hosts'
     - name: Render Kamal secrets
       run: envsubst < .kamal/secrets.staging.tpl > .kamal/secrets.staging
       env:
@@ -55,6 +55,6 @@ jobs:
       env:
         DEST_VM_HOST: ${{ steps.resolve.outputs.host }}
     - name: Deploy with Kamal
-      run: kamal deploy -d staging
+      run: cp config/deploy.staging.yml config/deploy.yml && cp .kamal/secrets.staging .kamal/secrets && kamal deploy
       env:
         DEST_VM_HOST: ${{ steps.resolve.outputs.host }}
